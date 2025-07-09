@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AuroCare Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
+</head>
+<body>
+<div class="container py-4">
+    <h2 class="text-center mb-4">🩺 AuroCare Health Dashboard</h2>
+    <form method="POST" class="card p-4 shadow-sm">
+        <div class="row mb-3">
+            <div class="col">
+                <label>Temperature (°C)</label>
+                <input type="number" name="temperature" step="0.1" class="form-control" required>
+            </div>
+            <div class="col">
+                <label>SpO₂ (%)</label>
+                <input type="number" name="spo2" class="form-control" required>
+            </div>
+            <div class="col">
+                <label>Heart Rate (bpm)</label>
+                <input type="number" name="heart_rate" class="form-control" required>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label>Age Group</label>
+            <select name="age_group" class="form-select">
+                <option value="Children">Children</option>
+                <option value="Adults" selected>Adults</option>
+                <option value="Seniors">Seniors</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label>Symptoms (1–3)</label><br>
+            {% for s in symptoms %}
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="symptoms" value="{{ s }}">
+                    <label class="form-check-label">{{ s.title() }}</label>
+                </div>
+            {% endfor %}
+        </div>
+
+        <button class="btn btn-primary">Check & Suggest</button>
+    </form>
+
+    {% if result %}
+        {% if result.error %}
+            <div class="alert alert-danger mt-4">{{ result.error }}</div>
+        {% else %}
+            <div class="mt-4">
+                <h5>Vitals:</h5>
+                <ul>
+                    <li>🌡 Temperature: {{ result.temperature }}°C</li>
+                    <li>🩸 SpO₂: {{ result.spo2 }}%</li>
+                    <li>❤️ Heart Rate: {{ result.heart_rate }} bpm</li>
+                </ul>
+
+                {% if result.issues %}
+                    <div class="alert alert-danger">⚠️ Issues Detected:
+                        <ul>{% for issue in result.issues %}<li>{{ issue }}</li>{% endfor %}</ul>
+                    </div>
+                {% else %}
+                    <div class="alert alert-success">✅ Vitals are Normal</div>
+                {% endif %}
+
+                <h5>Suggestions:</h5>
+                {% for s in result.suggestions %}
+                    <div class="card mt-3 p-3">
+                        <h6>🔹 {{ s.symptom.title() }}</h6>
+                        <strong>🌿 Remedies:</strong>
+                        <ul>{% for r in s.remedies %}<li>{{ r }}</li>{% endfor %}</ul>
+                        {% if s.medicines %}
+                            <strong>💊 Medicines:</strong>
+                            <ul>
+                            {% for m in s.medicines %}
+                                <li>{{ m.name }} - {{ m.dosage }} - {{ m.usage }}<br><em>{{ m.description }}</em></li>
+                            {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endif %}
+</div>
+<div>
+{% if result.critical_matches %}
+    <h4 class="mt-4 text-danger">🚨 Critical Disease Warning</h4>
+    {% for disease in result.critical_matches %}
+        <div class="alert alert-danger mt-2">
+            <strong>{{ disease.name }}</strong><br>
+            <em>Possible symptoms detected: {{ disease.symptoms | join(', ') }}</em><br>
+            🔎 <strong>Preventive Advice:</strong>
+            <ul>
+                {% for a in disease.advice %}
+                    <li>{{ a }}</li>
+                {% endfor %}
+            </ul>
+            {% if disease.medicines %}
+                💊 <strong>Suggested Medicines:</strong>
+                <ul>
+                    {% for m in disease.medicines %}
+                        <li>{{ m.name }} - {{ m.dosage }} - {{ m.usage }}<br>
+                            <em>{{ m.description }}</em>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    {% endfor %}
+{% endif %}
+</div>
+</body>
+</html>
