@@ -47,9 +47,9 @@
         
 	 └── README.md               # Project documentation
 	 
-     ├── ai_engine.py               # Vitals analysis logic
+     ├── ai_engine.py             # Vitals analysis logic
          
-	 ├── app1.py		     # Flask app
+	 ├── app1.py		    # Flask app
          
 	 ├── home_remedies.py        # Remedies & disease detection
          
