@@ -42,12 +42,21 @@
 
 
 📁 Folder Structure
-        aurocare(app_design)/
-         ├── app1.py                  # Flask app
-         ├── ai_engine.py            # Vitals analysis logic
-         ├── home_remedies.py        # Remedies & disease detection
-         ├── static/
-         │   └── styles.css          # UI styling
-         ├── templates/
-         │   └── index.html          # Web UI (Jinja2)
-         └── README.md               # Project documentation
+       
+	aurocare(app_design)/
+        
+	 ├── app1.py                  # Flask app
+         
+	 ├── ai_engine.py            # Vitals analysis logic
+         
+	 ├── home_remedies.py        # Remedies & disease detection
+         
+	 ├── static/
+         
+	 │   └── styles.css          # UI styling
+         
+	 ├── templates/
+         
+	 │   └── index.html          # Web UI (Jinja2)
+         
+	 └── README.md               # Project documentation
