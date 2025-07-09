@@ -53,12 +53,12 @@
          
 	 ├── home_remedies.py        # Remedies & disease detection
          
-	 ├── static/
-         
-	 │   └── styles.css          # UI styling
-         
 	 ├── templates/
          
-	 │   └── index.html          # Web UI (Jinja2)
+	 │   └── index.html         # Web UI (Jinja2) 
+         
+	 ├──static/
+         
+	 │   └── styles.css         # UI styling
          
 	 
