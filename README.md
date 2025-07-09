@@ -1,6 +1,8 @@
  🩺 AuroCare - AI Health Monitoring & Suggestion System
        AuroCare is an AI-powered health assistant that simulates sensor-based vitals monitoring, detects abnormalities,
        and provides real-time home remedies and medicine suggestions through a beautiful web dashboard.
+
+
 🚀 Features
 -  Vitals Monitoring: Input temperature, heart rate, SpO₂
 -  AI Health Engine: Analyzes vitals to flag abnormal conditions
@@ -13,6 +15,8 @@
 - Alerts & Prevention Tips: Helps users take early action
 - Modern Web UI: Built using Flask + Bootstrap
 
+
+
 🧠 Technologies Used
 
 - Python 3.10+
@@ -21,6 +25,7 @@
 - Bootstrap 5
 - `home_remedies.py` – Remedy & medicine knowledge base
 - `ai_engine.py` – Vitals analyzer
+
 
 🛠️ Setup Instructions
 
@@ -34,6 +39,7 @@
 	   python app1.py
 4. Open in browser:
 	   http://127.0.0.1:5000/
+
 
 📁 Folder Structure
         aurocare(app_design)/
