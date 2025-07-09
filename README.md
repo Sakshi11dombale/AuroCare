@@ -45,7 +45,9 @@
        
 	aurocare(app_design)/
         
-	 ├── app1.py                  # Flask app
+	 └── README.md               # Project documentation
+	 
+         ├── app1.py                  # Flask app
          
 	 ├── ai_engine.py            # Vitals analysis logic
          
@@ -59,4 +61,4 @@
          
 	 │   └── index.html          # Web UI (Jinja2)
          
-	 └── README.md               # Project documentation
+	 
